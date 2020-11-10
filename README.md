@@ -47,7 +47,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | post_code      | string     | null: false                    |
-| prefectures_id | integer    | null: false, foreign_key: true |
+| prefectures_id | integer    | null: false,                   |
 | city           | string     | null: false                    |
 | building_name  | string     |                                |
 | phone_number   | string     | null: false                    |

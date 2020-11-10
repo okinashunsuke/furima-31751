@@ -48,7 +48,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | post_code      | string     | null: false                    |
-| prefectures_id | integer    | null: false,                   |
+| prefecture_id  | integer    | null: false,                   |
 | city           | string     | null: false                    |
 | building_name  | string     |                                |
 | phone_number   | string     | null: false                    |
@@ -56,4 +56,4 @@
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase

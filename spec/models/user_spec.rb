@@ -27,8 +27,8 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      it "nicknameが40文字以上であれば登録できない" do
-        @user.nickname = "12345678901234567890123456789012345678901234567890"
+      it "nicknameが41文字以上であれば登録できない" do
+        @user.nickname = "a"*41
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname is too long (maximum is 40 characters)")
       end
@@ -41,6 +41,13 @@ RSpec.describe User, type: :model do
         @user.email = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it "重複したemailが存在する場合登録できない" do
+        @user.save
+        another_user= FactoryBot.build(:user)
+        another_user.email=@user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
       it "passwordが空では登録できない" do
         @user.password = ""
@@ -116,15 +123,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
-
-# 38:    it “emailに@が含まれていないと登録できない” do
-#   39:     @user.email = ‘@’
-#   40:     @user.valid?
-#  => 41:     binding.pry
-#   42:     expect(@user.errors.full_messages).to include()
-#   43:    end
-# 私たちのbinding.pryすればわかりますよ！！
-# 19:15
-# expectのあとの情報をターミナルで入力したら池間す！
-

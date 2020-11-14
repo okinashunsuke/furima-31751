@@ -28,16 +28,16 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Description can't be blank")
     end
 
-    it 'categoryが空では保存できないこと' do
+    it 'categorydが空では保存できないこと' do
       @item.category = nil
       @item.valid?
       expect(@item.errors.full_messages) .to include("Category can't be blank", "Category is not a number")
     end
 
-    it 'categoryが1(---)では保存できないこと' do
-      @item.category = 1
+    it 'category_idが1(---)では保存できないこと' do
+      @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages) .to include("Category can't be blank", "Category is not a number")
+      expect(@item.errors.full_messages) .to include("Category must be other than 1")
     end
 
     it 'conditionが空では保存できないこと' do
@@ -46,10 +46,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Condition can't be blank", "Condition is not a number")
     end
 
-    it 'conditionが1(---)では保存できないこと' do
-      @item.condition = 1
+    it 'condition_idが1(---)では保存できないこと' do
+      @item.condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages) .to include("Condition can't be blank", "Condition is not a number")
+      expect(@item.errors.full_messages) .to include("Condition must be other than 1")
     end
 
     it 'postageが空では保存できないこと' do
@@ -58,10 +58,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Postage can't be blank", "Postage is not a number")
     end
 
-    it 'postageが1(---)では保存できないこと' do
-      @item.postage = 1
+    it 'postage_idが1(---)では保存できないこと' do
+      @item.postage_id = 1
       @item.valid?
-      expect(@item.errors.full_messages) .to include("Postage can't be blank", "Postage is not a number")
+      expect(@item.errors.full_messages) .to include("Postage must be other than 1")
     end
 
     it 'prefectureが空では保存できないこと' do
@@ -70,10 +70,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Prefecture can't be blank", "Prefecture is not a number")
     end
 
-    it 'prefectureが1(---)では保存できないこと' do
-      @item.prefecture = 1
+    it 'prefecture_idが1(---)では保存できないこと' do
+      @item.prefecture_id = 1
       @item.valid?
-      expect(@item.errors.full_messages) .to include("Prefecture can't be blank", "Prefecture is not a number")
+      expect(@item.errors.full_messages) .to include("Prefecture must be other than 1")
     end
 
     it 'handing_timeが空では保存できないこと' do
@@ -82,10 +82,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Handing time can't be blank", "Handing time is not a number")
     end
 
-    it 'handing_timeが1(---)では保存できないこと' do
-      @item.handing_time = 1
+    it 'handing_time_idが1(---)では保存できないこと' do
+      @item.handing_time_id = 1
       @item.valid?
-      expect(@item.errors.full_messages) .to include("Handing time can't be blank", "Handing time is not a number")
+      expect(@item.errors.full_messages) .to include("Handing time must be other than 1")
     end
 
     it 'priceが空では保存できないこと' do

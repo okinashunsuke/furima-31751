@@ -6,10 +6,14 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX
   validates :nickname, presence: true, length: { maximum: 40 }
   validates :birthday, presence: true
+  
   with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/}do
     validates :first_name
     validates :last_name
   end
+  
+  
+  
   with_options presence: true, format: { with: /\A[ァ-ヶ]/}do
     validates :first_name_kana
     validates :last_name_kana

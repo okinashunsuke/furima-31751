@@ -6,7 +6,6 @@ end
 
 def new 
   @item = Item.new 
-  @item.save 
 end
 
 def create

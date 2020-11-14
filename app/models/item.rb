@@ -21,12 +21,8 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :condition
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :postage
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :handing_time
 end

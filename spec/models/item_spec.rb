@@ -34,8 +34,20 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Category can't be blank", "Category is not a number")
     end
 
+    it 'categoryが1(---)では保存できないこと' do
+      @item.category = 1
+      @item.valid?
+      expect(@item.errors.full_messages) .to include("Category can't be blank", "Category is not a number")
+    end
+
     it 'conditionが空では保存できないこと' do
       @item.condition = nil
+      @item.valid?
+      expect(@item.errors.full_messages) .to include("Condition can't be blank", "Condition is not a number")
+    end
+
+    it 'conditionが1(---)では保存できないこと' do
+      @item.condition = 1
       @item.valid?
       expect(@item.errors.full_messages) .to include("Condition can't be blank", "Condition is not a number")
     end
@@ -46,8 +58,20 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Postage can't be blank", "Postage is not a number")
     end
 
+    it 'postageが1(---)では保存できないこと' do
+      @item.postage = 1
+      @item.valid?
+      expect(@item.errors.full_messages) .to include("Postage can't be blank", "Postage is not a number")
+    end
+
     it 'prefectureが空では保存できないこと' do
       @item.prefecture = nil
+      @item.valid?
+      expect(@item.errors.full_messages) .to include("Prefecture can't be blank", "Prefecture is not a number")
+    end
+
+    it 'prefectureが1(---)では保存できないこと' do
+      @item.prefecture = 1
       @item.valid?
       expect(@item.errors.full_messages) .to include("Prefecture can't be blank", "Prefecture is not a number")
     end
@@ -58,14 +82,26 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages) .to include("Handing time can't be blank", "Handing time is not a number")
     end
 
+    it 'handing_timeが1(---)では保存できないこと' do
+      @item.handing_time = 1
+      @item.valid?
+      expect(@item.errors.full_messages) .to include("Handing time can't be blank", "Handing time is not a number")
+    end
+
     it 'priceが空では保存できないこと' do
       @item.price = nil
       @item.valid?
       expect(@item.errors.full_messages) .to include("Price is not included in the list")
     end
 
-    it 'price￥300〜￥9999999以外では保存できないこと' do
-      @item.price = 200
+    it 'price￥10000000以上では保存できないこと' do
+      @item.price = 10000000
+      @item.valid?
+      expect(@item.errors.full_messages) .to include("Price is not included in the list")
+    end
+
+    it 'price￥299以下では保存できないこと' do
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages) .to include("Price is not included in the list")
     end

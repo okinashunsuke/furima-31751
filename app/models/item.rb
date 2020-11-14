@@ -12,13 +12,9 @@ class Item < ApplicationRecord
    validates :image
    validates :name        
    validates :description 
-   validates :price       , format: { with: /\A[0-9]+\z/} , inclusion: {in: 300..9999999 }  
+   validates :price       ,inclusion: {in: 300..9999999  }
   end
-  
-  # def was_attached?
-  #   self.image.attached?
-  # end
- 
+
   has_one    :purchase
   belongs_to :user
   has_one_attached :image

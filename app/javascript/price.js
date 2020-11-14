@@ -12,5 +12,3 @@ window.addEventListener('load', () => {
     profit.innerHTML =  Math.floor(inputValue - tax)
  })
 });
-
-// window.addEventListener("load", price);

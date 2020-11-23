@@ -1,14 +1,17 @@
 require 'rails_helper'
-
 RSpec.describe PurchaseAddress, type: :model do
-  describe '購入情報の保存' do
+ describe '購入情報の保存' do
     before do
       @purchase_address = FactoryBot.build(:purchase_address)
     end
 
+   context '商品購入ができる時' do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@purchase_address).to be_valid
     end
+   end
+
+   context '商品購入ができない時' do
     it 'tokenが空だと保存できないこと' do
       @purchase_address.token  = nil
       @purchase_address.valid?
@@ -20,7 +23,7 @@ RSpec.describe PurchaseAddress, type: :model do
       expect(@purchase_address.errors.full_messages).to include("Post code can't be blank")
     end
     it 'post_codeにはハイフンが含まれていなければ保存できないこと' do
-      @purchase_address.post_code  = "1111111"
+      @purchase_address.post_code  = '1111111'
       @purchase_address.valid?
       expect(@purchase_address.errors.full_messages).to include("Post code is invalid")
     end
@@ -49,14 +52,15 @@ RSpec.describe PurchaseAddress, type: :model do
       expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank")
     end
     it 'phone_numberにハイフンが含まれていると保存できないこと' do
-      @purchase_address.phone_number = "-"
+      @purchase_address.phone_number = '090-1234-5678'
       @purchase_address.valid?
       expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
     end
     it 'phone_numberが11桁以上では保存できないこと' do
-      @purchase_address.phone_number = 123456789012
+      @purchase_address.phone_number = '123456789012'
       @purchase_address.valid?
       expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
     end
+   end
   end
 end
